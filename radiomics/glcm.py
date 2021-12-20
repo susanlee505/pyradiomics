@@ -190,7 +190,7 @@ class RadiomicsGLCM(base.RadiomicsFeaturesBase):
     # Mark empty angles with NaN, allowing them to be ignored in feature calculation
     sumP_glcm[sumP_glcm == 0] = numpy.nan
     # Normalize each glcm
-    P_glcm /= sumP_glcm[:, None, None, :]
+    #P_glcm /= sumP_glcm[:, None, None, :]
 
     return P_glcm
 
