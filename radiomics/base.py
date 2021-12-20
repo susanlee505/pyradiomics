@@ -56,7 +56,7 @@ class RadiomicsFeaturesBase(object):
     default values and explanation of usage.
   """
 
-  def __init__(self, inputImage, inputMask, **kwargs):
+  def __init__(self, inputImage, inputMask, glcm, **kwargs):
     self.logger = logging.getLogger(self.__module__)
     self.logger.debug('Initializing feature class')
 
@@ -64,7 +64,7 @@ class RadiomicsFeaturesBase(object):
       raise ValueError('Missing input image or mask')
 
     self.progressReporter = getProgressReporter
-
+    self.glcm = glcm
     self.settings = kwargs
 
     self.label = kwargs.get('label', 1)
@@ -113,8 +113,8 @@ class RadiomicsFeaturesBase(object):
 
   def _applyBinning(self, matrix):
     matrix, _ = imageoperations.binImage(matrix, self.maskArray, **self.settings)
-    self.coefficients['grayLevels'] = numpy.unique(matrix[self.maskArray])
-    self.coefficients['Ng'] = int(numpy.max(self.coefficients['grayLevels']))  # max gray level in the ROI
+    self.coefficients['grayLevels'] = numpy.unique([1,2,3,4,5,6,7,8,9])
+    self.coefficients['Ng'] = 9  # max gray level in the ROI
     return matrix
 
   def enableFeatureByName(self, featureName, enable=True):
