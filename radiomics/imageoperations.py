@@ -106,8 +106,8 @@ def getBinEdges(parameterValues, **kwargs):
     the need for standardized methodology in tumor texture analysis. Sci Rep. 2015;5(August):11075.
   """
   global logger
-  binWidth = kwargs.get('binWidth', 25)
-  binCount = kwargs.get('binCount')
+ # binWidth = kwargs.get('binWidth', 25)
+  binCount = 9
 
   if binCount is not None:
     binEdges = numpy.histogram(parameterValues, binCount)[1]
