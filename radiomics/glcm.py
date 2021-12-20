@@ -98,17 +98,17 @@ class RadiomicsGLCM(base.RadiomicsFeaturesBase):
   - `<http://www.fp.ucalgary.ca/mhallbey/the_glcm.htm>`_
   """
 
-  def __init__(self, inputImage, inputMask, **kwargs):
-    super(RadiomicsGLCM, self).__init__(inputImage, inputMask, **kwargs)
+  def __init__(self, inputImage, inputMask, glcm, **kwargs):
+    super(RadiomicsGLCM, self).__init__(inputImage, inputMask, glcm, **kwargs)
 
     self.symmetricalGLCM = kwargs.get('symmetricalGLCM', True)
     self.weightingNorm = kwargs.get('weightingNorm', None)  # manhattan, euclidean, infinity
 
-    self.P_glcm = None
+    self.P_glcm = glcm
     self.imageArray = self._applyBinning(self.imageArray)
 
   def _initCalculation(self, voxelCoordinates=None):
-    self.P_glcm = self._calculateMatrix(voxelCoordinates)
+    #self.P_glcm = self._calculateMatrix(voxelCoordinates)
 
     self._calculateCoefficients()
 
